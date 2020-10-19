@@ -16,9 +16,8 @@ services:
       context: ./
       dockerfile: Dockerfile
     container_name: flask
-    command: gunicorn --bind 0.0.0.0:8000 --workers 4 "app.create_app:create_app()"
     volumes:
-      - ./:/var/www
+    - ./:/var/www
     expose: 
       - 8080
     aliases:

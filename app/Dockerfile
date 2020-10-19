@@ -6,6 +6,6 @@ ADD . $CONTAINER_HOME
 
 WORKDIR $CONTAINER_HOME
 
-RUN pip install -r $CONTAINER_HOME/requirements.txt
-RUN apt-get install -y gunicorn
+RUN pip install --no-cache-r $CONTAINER_HOME/requirements.txt
 
+CMD ["gunicorn", "--bind",":8000", "--workers 4" "app.create_app:create_app()"]
