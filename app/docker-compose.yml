@@ -10,23 +10,16 @@ services:
             
     ports:
       -"80:80"
-    networks:
-       my-network
-    depends_on:
-      - flask  
-
+    
   flask:
     build: 
       context: ./
       dockerfile: Dockerfile
     container_name: flask
-    command: gunicorn --bind 0.0.0.0:8080 --workers 4 "app.create_app:create_app()"
+    command: gunicorn --bind 0.0.0.0:8000 --workers 4 "app.create_app:create_app()"
     volumes:
       - ./:/var/www
-    networks:
-      my-network:
-        aliases:
-          - flask-app
-
-  
- 
+    expose: 
+      - 8080
+    aliases:
+      - flask-app
